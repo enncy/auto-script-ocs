@@ -5,6 +5,10 @@ module.exports={
 	cx:{
 		
 		login:{
+			//是否使用破解验证码登录
+			use_breakCode:false,
+			//如果不使用验证码破解，人工输入的等待时间，write_code_time 秒后自动点击登录按钮
+			write_code_time:5000, 
 			//登录涉及到的元素
 			elements:{
 				//等待选择学校
