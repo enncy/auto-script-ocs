@@ -55,8 +55,8 @@ module.exports = {
 							passwordEle.clear().then(() => {
 								//输入密码
 								passwordEle.sendKeys(config.password).then(() => {
-									//如果不开启验证码破解，则等待时间
-									if (!ocs_config.cx.login.use_breakCode) {
+									//如果不开启验证码破解，则等待时间 ，  可以在 ocs.config.js 设置 use_breakCode 或者直接在 config 对象设置  use_breakCode
+									if ((config.use_breakCode!=undefined && config.use_breakCode==false) ||  !ocs_config.cx.login.use_breakCode) {
 										setTimeout(() => {
 											this.loginSubmit(driver, config).then(r => {
 												resolve(r)
@@ -118,7 +118,7 @@ module.exports = {
 					//等待2秒，如果页面没跳转，说明登录失败
 					driver.findElement(By.css(ocs_config.cx.login.elements.show_error)).then(error => {
 						error.getText().then(text => {
-							if (text.trim() == "验证码错误") {
+							if (text.trim() == "验证码错误" || text.trim() =="请填写验证码") {
 								driver.navigate().refresh().then(r => {
 									//重新来
 									this.writeInfo(driver, config).then(r=>{
