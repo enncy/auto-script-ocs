@@ -39,6 +39,15 @@ module.exports={
 								
 			}
 		},
+		into_course:{
+			elements:{
+				//等待进入课程界面
+				into_course_wait_time:3000,
+				//第一个学习点
+				job_a:'.units h3 a',
+				 
+			}
+		},
 		url:{
 			//登录页
 			login:'https://passport2.chaoxing.com/login',

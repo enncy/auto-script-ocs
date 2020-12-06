@@ -1,5 +1,4 @@
 const webdriver = require('selenium-webdriver');
-
 const By = webdriver.By
 
 function getCourse(driver) {
@@ -22,7 +21,7 @@ function getCourse(driver) {
 				function forEachCourses(index) {
 					//遍历到最后一个，返回课程信息
 					if(!courses[index]){
-						resolve(course_info)
+						resolve(course_info,driver)
 						return
 					}else{
 						//遍历课程信息
@@ -83,4 +82,4 @@ function getCourse(driver) {
 }
 
 
-module.exports.getCourse =getCourse
+module.exports = getCourse

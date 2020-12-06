@@ -4,7 +4,7 @@
   "description": "auto-script-projects for OnlineCourceScript",
   "main": "index.js",
   "scripts": {
-    "test": "node test/",
+    "test": "node test/index.js"
   },
   "repository": {
     "type": "git",

@@ -60,7 +60,7 @@ module.exports={
 													setTimeout(() => {
 	
 														//等待2秒，如果页面没跳转，说明登录失败
-														driver.findElement(By.css(ocs_config.cx.login.elements.login_script.show_error)).then(error => {
+														driver.findElement(By.css(ocs_config.cx.login.elements.show_error)).then(error => {
 															error.getText().then(text => {
 																if (text.trim() == "验证码错误") {
 																	driver.navigate().refresh().then(r => {
