@@ -19,6 +19,8 @@
   "dependencies": {
     "axios": "^0.21.0",
     "chromedriver": "^87.0.2",
+    "compressing": "^1.5.1",
+    "request": "^2.88.2",
     "selenium-webdriver": "^4.0.0-alpha.8"
   }
 }
