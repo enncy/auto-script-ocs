@@ -16,13 +16,12 @@ auto-script-projects  for  OnlineCourseScript
 ```javascript
 
 const ocs = require('auto-script-ocs')
-
-
-let config = {
+//开始登录
+ocs.startLogin({
 	//谷歌浏览器的版本， 打开谷歌浏览器 -> 设置(s) -> 关于 Chrome -> 版本 xx.x.xxxx.xx
-	chrome_version: 'xx.x.xxxx.xx', 
+	chrome_version: 'xx.x.xxxx.xx',
 	//需要登录的网课平台
-	type: 'cx',
+	type: 'cx', //cx超星 ，目前只支持cx
 	//破解验证码的配置，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
 	//如果你不想用验证码破解功能，想手动输入验证码，
 	//第一种方式：使用 use_breakCode: false
@@ -41,35 +40,19 @@ let config = {
 	account: '12345678901',
 	//密码
 	password: 'abcdefg'
-}
-
-//查找谷歌浏览器驱动
-if(!fs.existsSync('./bin'))fs.mkdirSync('./bin')
-if (!fs.existsSync(`./bin/chromedriver${config.chrome_version}.exe`)) {
-	driverHandle.installChromedriver(config.chrome_version).then(r => {
-		test()
-	})
-} else {
-	test()
-}
-
-function test() {
-
-	//开始登录
-	ocs.startLogin(config).then(() => {
-		//获取全部课程
-		ocs.getCourse(ocs.driver).then(courses_info => {
-			//全部课程信息
-			console.log(courses_info);
-			//进入课程
-			ocs.intoCourse(ocs.driver, courses_info[0].url).then(driver => {
-				driver.getCurrentUrl().then(url => {
-					console.log("进入课程成功" + url);
-				})
+}).then(() => {
+	//获取全部课程
+	ocs.getCourse(ocs.driver).then(courses_info => {
+		//全部课程信息
+		console.log(courses_info);
+		//进入课程
+		ocs.intoCourse(ocs.driver, courses_info[0].url).then(driver => {
+			driver.getCurrentUrl().then(url => {
+				console.log("进入课程成功" + url);
 			})
 		})
 	})
-}
+})
 
 
 ```

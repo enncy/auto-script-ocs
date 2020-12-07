@@ -3,7 +3,7 @@ const By = webdriver.By
 const ocs_config = require('../../ocs.config.js')
 
 
-function intoCourse(driver, course_url) {
+ function intoCourse(driver, course_url) {
 	return new Promise((resolve, reject) => {
 		//进入页面
 		driver.get(course_url)
