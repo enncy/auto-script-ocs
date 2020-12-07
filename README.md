@@ -12,7 +12,7 @@ auto-script-projects  for  OnlineCourseScript
 
 ## 使用
 
-新建index.js文件然后 `node index.js`
+新建index.js文件然后 `node index.js`    
 或者在你的 node 程序中调用
 
 ```javascript
