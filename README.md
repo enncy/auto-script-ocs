@@ -26,7 +26,6 @@ ocs.startLogin({
 	//如果你不想用验证码破解功能，想手动输入验证码，
 	//第一种方式：使用 use_breakCode: false
 	//第二种方式：请在 ./node_modules/auto-script-ocs/ocs.config.js 下的:  平台类型.login.use_breakCode 设置为 false
-
 	//开启验证码破解
 	use_breakCode: true,
 	//破解验证码平台 http://www.ttshitu.com/docs/
@@ -56,4 +55,34 @@ ocs.startLogin({
 
 
 ```
- 
+
+
+#### methods
+
+- `ocs`   requied('auto-script-ocs') ， ocs 对象 ，封装了各种自动化函数
+
+  - `startLogin(config) `  `return Promise()    `   开始自动登录 ，  `config` 为上面的 [config ](#config ) 对象
+
+    - `config`
+      - `chrome_version` :  `String`     谷歌浏览器的版本， 打开谷歌浏览器 -> 设置(s) -> 关于 Chrome -> 版本 xx.x.xxxx.xx
+      - `type`  :  ` String(cx)`        超星 ，目前只支持cx
+      - `use_breakCode `  : `Boolean`       是否开启验证码破解 ，
+      - `breakCode` : `Object`       此属性必须先开启 `use_breakCode : true `     ，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
+        - `account`   : `String ` 账号
+        - `password`  : `String `  密码
+      - `school` : `String `网课平台学校名
+      - `account`  : `String ` 网课平台账号
+      - `password ` : `String ` 网课平台密码
+
+  - `getCourse(driver)` : `return Promise()`  开始自动获取课程 ， 必须在 `startLogin` 之后执行
+
+    - `driver` Webdriver 对象 
+
+  - `intoCourse(driver,url)` : `return Promise()`  开始进入课程
+
+    - `driver` :  `Webdriver ` 对象 
+    - `url` : `String`
+
+    
+
+
