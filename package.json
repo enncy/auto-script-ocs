@@ -1,8 +1,10 @@
 {
   "name": "auto-script-ocs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "auto-script-projects for OnlineCourceScript",
   "main": "index.js",
+  "author": "klskeleton",
+  "license": "ISC",
   "scripts": {
     "test": "node test/index.js"
   },
@@ -10,8 +12,6 @@
     "type": "git",
     "url": "git+https://github.com/klskeleton/auto-script-ocs.git"
   },
-  "author": "klskeleton",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/klskeleton/auto-script-ocs/issues"
   },
@@ -22,5 +22,8 @@
     "compressing": "^1.5.1",
     "request": "^2.88.2",
     "selenium-webdriver": "^4.0.0-alpha.8"
+  },
+  "directories": {
+    "test": "test"
   }
 }
