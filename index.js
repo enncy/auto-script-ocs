@@ -32,12 +32,8 @@ module.exports = {
 			if (!fs.existsSync(`./bin/chromedriver${config.chrome_version}.exe`)) {
 				driverHandle.installChromedriver(config.chrome_version).then(r=>{
 					//启动刚刚下载的chromedriver$
-					var service = new chrome.ServiceBuilder(`./bin/chromedriver${config.chrome_version}.exe`).build();
-					chrome.setDefaultService(service);
-					 
-					 
-					chrome = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
-					this.driver = chrome
+					
+					this.driver = this.newBrowser(config.chrome_version)
 					//超星登录
 					if (config.type == 'cx') this.driver.get(ocs_config.cx.url.login);
 					
@@ -54,6 +50,13 @@ module.exports = {
 			
 			
 		})
+	},
+	//新建浏览器，此浏览器不共享 cookie
+	newBrowser(chrome_version){
+		var service = new chrome.ServiceBuilder(`./bin/chromedriver${chrome_version}.exe`).build();
+		chrome.setDefaultService(service);
+		chrome = new webdriver.Builder().withCapabilities(webdriver.Capabilities.chrome()).build();
+		return chrome
 	}
 }
 
