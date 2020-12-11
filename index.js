@@ -20,7 +20,8 @@ module.exports = {
 	loginUtil,
 	getCourse,
 	intoCourse,
-
+	driverHandle,
+	
 	//执行登录操作
 	 startLogin(config) {
 		
@@ -29,23 +30,32 @@ module.exports = {
 			
 			//查找谷歌浏览器驱动
 			if(!fs.existsSync('./bin'))fs.mkdirSync('./bin')
+			//如果查找不到则下载
 			if (!fs.existsSync(`./bin/chromedriver${config.chrome_version}.exe`)) {
 				driverHandle.installChromedriver(config.chrome_version).then(r=>{
 					//启动刚刚下载的chromedriver$
-					
 					this.driver = this.newBrowser(config.chrome_version)
-					//超星登录
-					if (config.type == 'cx') this.driver.get(ocs_config.cx.url.login);
-					
-					loginUtil.login(this.driver, config).then(r => {
-						resolve(this.driver)
-					}).catch(e => {
-						resolve(this.driver)
-					})
+					start()
 				}).catch(e=>{
 					console.error(e);
 				})
-			} 
+				
+			//查找到则直接运行
+			} else{
+				this.driver = this.newBrowser(config.chrome_version)
+				start()
+			}
+			
+			function start(){
+				//超星登录
+				if (config.type == 'cx') this.driver.get(ocs_config.cx.url.login);
+				
+				loginUtil.login(this.driver, config).then(r => {
+					resolve(this.driver)
+				}).catch(e => {
+					resolve(this.driver)
+				})
+			}
 			
 			
 			
