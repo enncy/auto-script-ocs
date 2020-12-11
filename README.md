@@ -9,6 +9,9 @@ auto-script-projects  for  OnlineCourseScript
 - 超星自动进入课程
 
 ## 使用
+```
+npm i auto-script-ocs
+```
 
 新建index.js文件复制以下内容然后 `node index.js`    
 或者在你的 node 程序中调用
