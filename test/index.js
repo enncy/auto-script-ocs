@@ -2,7 +2,7 @@ const ocs = require('../index.js')
 //开始登录
 ocs.startLogin({
 	//谷歌浏览器的版本， 打开谷歌浏览器 -> 设置(s) -> 关于 Chrome -> 版本 xx.x.xxxx.xx
-	chrome_version: '87.0.4280.88',
+	chrome_version: 'xx.x.xxxx.xx',
 	//需要登录的网课平台
 	type: 'cx', //cx超星 ，目前只支持cx
 	//破解验证码的配置，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
