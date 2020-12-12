@@ -22,6 +22,7 @@ module.exports = {
 	getCourse,
 	intoCourse,
 	driverHandle,
+	
 	initService(chrome_version){
 		var service = new chrome.ServiceBuilder(`./bin/chromedriver${chrome_version}.exe`).build();
 		chrome.setDefaultService(service);

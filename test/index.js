@@ -1,6 +1,6 @@
 const ocs = require('../index.js')
-//开始登录
-ocs.startLogin({
+
+let config = {
 	//谷歌浏览器的版本， 打开谷歌浏览器 -> 设置(s) -> 关于 Chrome -> 版本 xx.x.xxxx.xx
 	chrome_version: 'xx.x.xxxx.xx',
 	//需要登录的网课平台
@@ -22,7 +22,12 @@ ocs.startLogin({
 	account: '12345678901',
 	//密码
 	password: 'abcdefg'
-}).then(driver => {
+}
+
+//初始化chrome服务
+ocs.initService(config.chrome_version)
+//开始登录
+ocs.startLogin(config).then(driver => {
 	//获取全部课程
 	ocs.getCourse(driver).then(course_info=> {
 		//全部课程信息
