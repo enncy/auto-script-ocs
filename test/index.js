@@ -22,16 +22,19 @@ ocs.startLogin({
 	account: '12345678901',
 	//密码
 	password: 'abcdefg'
-}).then(() => {
+}).then(driver => {
 	//获取全部课程
-	ocs.getCourse(ocs.driver).then(courses_info => {
+	ocs.getCourse(driver).then(course_info=> {
 		//全部课程信息
-		console.log(courses_info);
+		console.log(course_info);
 		//进入课程
-		ocs.intoCourse(ocs.driver, courses_info[0].url).then(driver => {
+		ocs.intoCourse(driver, course_info[0].url).then(driver => {
 			driver.getCurrentUrl().then(url => {
 				console.log("进入课程成功" + url);
 			})
 		})
 	})
+}).catch(e=>{
+	console.error(e);
 })
+ 

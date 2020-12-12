@@ -21,9 +21,9 @@ function getCourse(driver) {
 				forEachCourses(0)
 				function forEachCourses(index) {
 					//遍历到最后一个，返回课程信息
+					
 					if(!courses[index]){
-						resolve(course_info,driver)
-						return
+						resolve(course_info)
 					}else{
 						//遍历课程信息
 						//1。获取图片

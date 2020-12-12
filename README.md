@@ -43,18 +43,20 @@ ocs.startLogin({
 	account: '12345678901',
 	//密码
 	password: 'abcdefg'
-}).then(() => {
+}).then(driver => {
 	//获取全部课程
-	ocs.getCourse(ocs.driver).then(courses_info => {
+	ocs.getCourse(driver).then(course_info=> {
 		//全部课程信息
-		console.log(courses_info);
+		console.log(course_info);
 		//进入课程
-		ocs.intoCourse(ocs.driver, courses_info[0].url).then(driver => {
+		ocs.intoCourse(driver, course_info[0].url).then(driver => {
 			driver.getCurrentUrl().then(url => {
 				console.log("进入课程成功" + url);
 			})
 		})
 	})
+}).catch(e=>{
+	console.error(e);
 })
 
 
@@ -65,7 +67,7 @@ ocs.startLogin({
 
 - `ocs`   requied('auto-script-ocs') ， ocs 对象 ，封装了各种自动化函数
 
-  - `startLogin(config) `  `return Promise()    `   开始自动登录 ，  `config` 为上面的 [config ](#config ) 对象
+  - `startLogin(config) `  `return Promise(driver)    `   开始自动登录 ，  `config` 为上面的 [config ](#config ) 对象
 
     - `config`
       - `chrome_version` :  `String`     谷歌浏览器的版本， 打开谷歌浏览器 -> 设置(s) -> 关于 Chrome -> 版本 xx.x.xxxx.xx
@@ -78,11 +80,11 @@ ocs.startLogin({
       - `account`  : `String ` 网课平台账号
       - `password ` : `String ` 网课平台密码
 
-  - `getCourse(driver)` : `return Promise()`  开始自动获取课程 ， 必须在 `startLogin` 之后执行
+  - `getCourse(driver)` : `return Promise(driver,courses_info)`  开始自动获取课程 ， 必须在 `startLogin` 之后执行
 
     - `driver` Webdriver 对象 
 
-  - `intoCourse(driver,url)` : `return Promise()`  开始进入课程
+  - `intoCourse(driver,url)` : `return Promise(driver)`  开始进入课程
 
     - `driver` :  `Webdriver ` 对象 
     - `url` : `String`

@@ -6,22 +6,7 @@ const until = webdriver.until
 
 
 module.exports = {
-	//检查登录是否成功
-	checkLogin(driver) {
-		return new Promise((resolve, reject) => {
-			driver.getCurrentUrl().then(url => {
-				if (url.indexOf(ocs_config.cx.url.index) != -1) {
-					console.log("登录成功");
-					resolve(true)
-				} else {
-					console.log("登录失败");
-					resolve(false)
-				}
-			}).catch(e => {
-				console.error(e);
-			})
-		})
-	},
+
 
 	//登录操作
 	login(driver, config) {
@@ -32,7 +17,7 @@ module.exports = {
 			this.getSchool(driver, config).then(() => {
 				console.log("输入账号中。。。");
 				this.writeInfo(driver, config).then(r => {
-					resolve(r)
+					resolve(driver)
 				}).catch(e => {
 					reject(e)
 				})
@@ -56,10 +41,11 @@ module.exports = {
 								//输入密码
 								passwordEle.sendKeys(config.password).then(() => {
 									//如果不开启验证码破解，则等待时间 ，  可以在 ocs.config.js 设置 use_breakCode 或者直接在 config 对象设置  use_breakCode
-									if ((config.use_breakCode!=undefined && config.use_breakCode==false) ||  !ocs_config.cx.login.use_breakCode) {
+									if ((config.use_breakCode != undefined && config.use_breakCode == false) || !ocs_config.cx.login
+										.use_breakCode) {
 										setTimeout(() => {
-											this.loginSubmit(driver, config).then(r => {
-												resolve(r)
+											this.loginSubmit(driver, config).then(driver => {
+												resolve(driver)
 											}).catch(e => {
 												reject(e)
 											})
@@ -77,8 +63,8 @@ module.exports = {
 												driver.findElement(By.css(ocs_config.cx.login.elements.vercode_input)).then(ele => {
 													ele.sendKeys(r).then(r => {
 														//登录操作
-														this.loginSubmit(driver, config).then(r => {
-															resolve(r)
+														this.loginSubmit(driver, config).then(driver => {
+															resolve(driver)
 														}).catch(e => {
 															reject(e)
 														})
@@ -118,12 +104,12 @@ module.exports = {
 					//等待2秒，如果页面没跳转，说明登录失败
 					driver.findElement(By.css(ocs_config.cx.login.elements.show_error)).then(error => {
 						error.getText().then(text => {
-							if (text.trim() == "验证码错误" || text.trim() =="请填写验证码") {
+							if (text.trim() == "验证码错误" || text.trim() == "请填写验证码") {
 								driver.navigate().refresh().then(r => {
 									//重新来
-									this.writeInfo(driver, config).then(r=>{
-										resolve(r)
-									}).catch(e=>{
+									this.writeInfo(driver, config).then(r => {
+										resolve(driver)
+									}).catch(e => {
 										reject(e)
 									})
 								})
@@ -138,13 +124,29 @@ module.exports = {
 						//如果页面此时在跳转，则会抛出此异常，说明登录成功，这里加一下url判断即可
 						this.checkLogin(driver).then(r => {
 							if (r) {
-								resolve("登录成功")
+								resolve(driver)
 							}
 						}).catch(e => {
 							reject(e);
 						})
 					})
 				}, ocs_config.cx.login.elements.login_script.login_wait_time)
+			})
+		})
+	},
+	//检查登录是否成功
+	checkLogin(driver) {
+		return new Promise((resolve, reject) => {
+			driver.getCurrentUrl().then(url => {
+				if (url.indexOf(ocs_config.cx.url.index) != -1) {
+					console.log("登录成功");
+					resolve(driver, true)
+				} else {
+					console.log("登录失败");
+					resolve(undefined, false)
+				}
+			}).catch(e => {
+				console.error(e);
 			})
 		})
 	},
@@ -186,7 +188,7 @@ module.exports = {
 												li.click().then(() => {
 													//关闭选择学校框
 													driver.executeScript(ocs_config.cx.login.elements.close_school_select_script);
-													resolve()
+													resolve(driver)
 												})
 											}
 										})
