@@ -2,12 +2,13 @@
   "name": "auto-script-ocs",
   "version": "1.0.9",
   "description": "auto-script-projects for OnlineCourceScript",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "author": "klskeleton",
   "license": "ISC",
   "scripts": {
     "test": "node test/index.js"
   },
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/klskeleton/auto-script-ocs.git"
@@ -18,12 +19,14 @@
   "homepage": "https://github.com/klskeleton/auto-script-ocs#readme",
   "dependencies": {
     "axios": "^0.21.0",
-    "chromedriver": "^87.0.2",
-    "compressing": "^1.5.1",
-    "request": "^2.88.2",
-    "selenium-webdriver": "^4.0.0-alpha.8"
+    "carlo": "^0.9.46",
+    "puppeteer-core": "^5.5.0"
   },
   "directories": {
     "test": "test"
+  },
+  "devDependencies": {
+    "@types/carlo": "^0.9.1",
+    "@types/puppeteer-core": "^2.0.0"
   }
 }
