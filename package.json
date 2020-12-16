@@ -7,7 +7,9 @@
   "license": "ISC",
   "scripts": {
     "test": "node test/index.js",
-    "dev": "tsc && node ./dist/test/index.js"
+    "dev": "tsc && node ./dist/test/index.js",
+    
+    "publish": "git push origin main && npm version patch && nrm use npm && npm publish && nrm use taobao"
   },
   "repository": {
     "type": "git",
