@@ -72,7 +72,7 @@ ocs.launch().then(async browser=>{
 # AutoScriptOcs
 ## class:AutoScriptOcs(options)
 
-### `options` <Object>
+###  options <Object>
 - `type`  <string>    ` cx | ...`        超星 ，目前只支持 	`cx`
 - `use_breakCode `  <boolean>       是否开启验证码破解 ，
 - `breakCode` <Object>  此属性必须先开启 `use_breakCode : true `     ，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
@@ -80,9 +80,8 @@ ocs.launch().then(async browser=>{
   - `password`    <string>  密码
 - `school`  <string> 网课平台学校名
 - `account`   <string> 网课平台账号
-- `password `  <string> 网课平台密码
+- `password `  <string> 网课平台密码      
  
-****
 
 ## Property
 
