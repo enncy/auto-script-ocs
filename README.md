@@ -95,12 +95,18 @@ ocs.launch().then(async browser=>{
 
 ## Property
 
+
+
 - `browser_utils` <[BrowserUtils](#BrowserUtils)>  浏览器工具类
 
 - `login` :  <[ASOcsLogin](#ASocsLogin)>  登录类 ， 使用  `login.start() ` 登录
 - `course`: <[ASOcsCourse](#ASOcsCourse)>  课程类 
 
+
+
 ## Methods
+
+
 
 - `launch()` `return ` <[Browser](#Browser)> 默认启动方式，初始化 
 - `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
@@ -110,6 +116,7 @@ ocs.launch().then(async browser=>{
  
 -
                
+
 
 # ASOcsLogin
 
@@ -131,6 +138,8 @@ ocs.launch().then(async browser=>{
 
 ## Methods
 
+
+
 `getCourseInfo()` `return` <Promise<Array<Object>>>   获取课程信息，返回一个课程数组
 
 - return <Array<Object>>
@@ -148,6 +157,7 @@ ocs.launch().then(async browser=>{
 `gotoExam(course_url)` `return` <Promise<boolean>>  进入考试界面
 
 - `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`         
+    
     
 
 具体实现类：[CXCourse](#CXCourse)
