@@ -2,7 +2,6 @@
 import ASOcs from '../index'
 
 let options = {
-
     //启动类型，目前有 : cx
     type:'cx', 
     //开启验证码破解，如果你不想用验证码破解功能，想手动输入验证码，使用 use_breakCode: false

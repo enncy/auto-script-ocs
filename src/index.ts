@@ -49,5 +49,5 @@ class AutoScriptOcs {
 	}
 }
 
-export default AutoScriptOcs
+module.exports  = AutoScriptOcs
 

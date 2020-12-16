@@ -70,43 +70,64 @@ ocs.launch().then(async browser=>{
 # Api
 
 # AutoScriptOcs
-### classs:AutoScriptOcs(options)
+## class:AutoScriptOcs(options)
 
-- `options` <Object>
-  - `type`  <string>    ` cx | ...`        超星 ，目前只支持 	`cx`
-  - `use_breakCode `  <boolean>       是否开启验证码破解 ，
-  - `breakCode` <Object>  此属性必须先开启 `use_breakCode : true `     ，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
-    - `account`     <string>  账号
-    - `password`    <string>  密码
-  - `school`  <string> 网课平台学校名
-  - `account`   <string> 网课平台账号
-  - `password `  <string> 网课平台密码
+#### options
 
 
-### Property
++ `type`  <string>    ` cx | ...`        超星 ，目前只支持 	`cx`        
+  
++ `use_breakCode`  <boolean>       是否开启验证码破解 ，
+  
++ `breakCode` <Object>  此属性必须先开启 `use_breakCode : true `     ，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
+  
+  - `account`     <string>  账号
+    
+  - `password`    <string>  密码
+  
++ `school`  <string> 网课平台学校名
+  
++ `account`   <string> 网课平台账号
+  
++ `password `  <string> 网课平台密码    
+  
 
-- `browser_utils` <[BrowserUtils](#BrowserUtils)>  浏览器工具类
 
-- `login` :  <[ASOcsLogin](#ASocsLogin)>  登录类 ， 使用  `login.start() ` 登录
-- `course`: <[ASOcsCourse](#ASOcsCourse)>  课程类 
+## Property
 
-### Methods
 
-- `launch()` `return ` <[Browser](#Browser)> 默认启动方式，初始化 
-- `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
-  - `options`  <Object>
-    - `binary_path` <string>  被调试的浏览器可执行文件路径 ，例如  ..../chrome.exe
-    - `port` <number>    调试模式指定端口   
 
++ `browser_utils` <[BrowserUtils](#BrowserUtils)>  浏览器工具类
+
++ `login` :  <[ASOcsLogin](#ASocsLogin)>  登录类 ， 使用  `login.start() ` 登录
+
++ `course`: <[ASOcsCourse](#ASOcsCourse)>  课程类 
+
+
+
+## Methods
+
+
+
++ `launch()` `return ` <[Browser](#Browser)> 默认启动方式，初始化 
+
++ `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
+
+  + `options`  <Object>       
+    
+    - `binary_path` <string>  被调试的浏览器可执行文件路径 ，例如  ..../chrome.exe          
+    
+    - `port` <number>    调试模式指定端口                        
+               
 
 
 # ASOcsLogin
 
-### interface: ASOcsLogin 
+## interface: ASOcsLogin 
 
 登录类，`start()` 作为主函数使用，其他方法不建议调用
 
-### Methods
+## Methods
 
   `start()` `return  `  <Promise<string>>   开始登录函数
 
@@ -116,18 +137,26 @@ ocs.launch().then(async browser=>{
 
 # ASOcsCourse
 
-### interface: ASOcsLogin
+## interface: ASOcsLogin
 
-### Methods
+## Methods
+
+
 
 `getCourseInfo()` `return` <Promise<Array<Object>>>   获取课程信息，返回一个课程数组
 
-- return <Array<Object>>
-  - `Object` :
++ return <Array<Object>>
+  
+  + `Object` :
+  
     - `title` <string> 课程标题
+    
     - `url` <string> 课程链接
+    
     - `img` <string> 课程图片链接
-    - `info` <Array<string>>   课程信息，例如 ["张三","100班级","课程结束"]
+    
+    - `info` <Array<string>>   课程信息，例如 ["张三","100班级","课程结束"]            
+          
 
 `gotoStudy(course_url)` `return` <Promise<boolean>>  进入学习界面
 
@@ -135,7 +164,9 @@ ocs.launch().then(async browser=>{
 
 `gotoExam(course_url)` `return` <Promise<boolean>>  进入考试界面
 
-- `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`
++ `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`         
+  
+    
 
 具体实现类：[CXCourse](#CXCourse)
 
