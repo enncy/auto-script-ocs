@@ -53,4 +53,4 @@ class AutoScriptOcs {
         });
     }
 }
-exports.default = AutoScriptOcs;
+module.exports = AutoScriptOcs;
