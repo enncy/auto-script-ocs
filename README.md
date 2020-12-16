@@ -72,7 +72,8 @@ ocs.launch().then(async browser=>{
 # AutoScriptOcs
 ## class:AutoScriptOcs(options)
 
-###  options <Object>          
+#### options
+
 
 - `type`  <string>    ` cx | ...`        超星 ，目前只支持 	`cx`        
     
