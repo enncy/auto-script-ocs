@@ -70,7 +70,7 @@ ocs.launch().then(async browser=>{
 # Api
 
 # AutoScriptOcs
-### classs:AutoScriptOcs(options)
+## classs:AutoScriptOcs(options)
 
 - `options` <Object>
   - `type`  <string>    ` cx | ...`        超星 ，目前只支持 	`cx`
@@ -83,14 +83,14 @@ ocs.launch().then(async browser=>{
   - `password `  <string> 网课平台密码
 ****
 
-### Property
+## Property
 
 - `browser_utils` <[BrowserUtils](#BrowserUtils)>  浏览器工具类
 
 - `login` :  <[ASOcsLogin](#ASocsLogin)>  登录类 ， 使用  `login.start() ` 登录
 - `course`: <[ASOcsCourse](#ASOcsCourse)>  课程类 
 
-### Methods
+## Methods
 
 - `launch()` `return ` <[Browser](#Browser)> 默认启动方式，初始化 
 - `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
@@ -103,11 +103,11 @@ ocs.launch().then(async browser=>{
 
 # ASOcsLogin
 
-### interface: ASOcsLogin 
+## interface: ASOcsLogin 
 
 登录类，`start()` 作为主函数使用，其他方法不建议调用
 
-### Methods
+## Methods
 
   `start()` `return  `  <Promise<string>>   开始登录函数
 
@@ -117,9 +117,9 @@ ocs.launch().then(async browser=>{
 
 # ASOcsCourse
 
-### interface: ASOcsLogin
+## interface: ASOcsLogin
 
-### Methods
+## Methods
 
 `getCourseInfo()` `return` <Promise<Array<Object>>>   获取课程信息，返回一个课程数组
 
