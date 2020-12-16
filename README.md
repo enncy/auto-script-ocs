@@ -96,9 +96,10 @@ ocs.launch().then(async browser=>{
 - `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
   - `options`  <Object>
     - `binary_path` <string>  被调试的浏览器可执行文件路径 ，例如  ..../chrome.exe
-    - `port` <number>    调试模式指定端口   
+    - `port` <number>    调试模式指定端口                 
+ 
 
-
+               
 
 # ASOcsLogin
 
@@ -127,7 +128,8 @@ ocs.launch().then(async browser=>{
     - `title` <string> 课程标题
     - `url` <string> 课程链接
     - `img` <string> 课程图片链接
-    - `info` <Array<string>>   课程信息，例如 ["张三","100班级","课程结束"]
+    - `info` <Array<string>>   课程信息，例如 ["张三","100班级","课程结束"]            
+          
 
 `gotoStudy(course_url)` `return` <Promise<boolean>>  进入学习界面
 
@@ -135,7 +137,8 @@ ocs.launch().then(async browser=>{
 
 `gotoExam(course_url)` `return` <Promise<boolean>>  进入考试界面
 
-- `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`
+- `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`         
+    
 
 具体实现类：[CXCourse](#CXCourse)
 
