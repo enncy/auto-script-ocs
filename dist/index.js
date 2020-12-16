@@ -32,8 +32,10 @@ class AutoScriptOcs {
             console.log("launching...");
             this.browser = yield this.browser_utils.launch();
             this.page = yield this.browser.newPage();
-            this.login = new login_1.default(this.page, this.options);
-            this.course = new course_1.default(this.page);
+            if (this.options.type === 'cx') {
+                this.login = new login_1.default(this.page, this.options);
+                this.course = new course_1.default(this.page);
+            }
             console.log("launch finish!");
             return this.browser;
         });
@@ -43,8 +45,10 @@ class AutoScriptOcs {
         return __awaiter(this, void 0, void 0, function* () {
             this.browser = yield this.browser_utils.launchChromeByDebug(options);
             this.page = yield this.browser.newPage();
-            this.login = new login_1.default(this.page, options);
-            this.course = new course_1.default(this.page);
+            if (this.options.type === 'cx') {
+                this.login = new login_1.default(this.page, this.options);
+                this.course = new course_1.default(this.page);
+            }
             return this.browser;
         });
     }

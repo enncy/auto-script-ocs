@@ -13,22 +13,21 @@ let options = {
         password: '...',
     },
     //学校名称
-    school: "广西大学行健文理学院",
+    school: "北京大学",
     //账号名称
-    account: '18275719980',
+    account: '123456789',
     //密码
-    password: 'skeleton132525'
+    password: '123456789'
 }
-
-const ocs = new ASOcs(options)
-console.log(ocs);
-
 /**
  * 使用默认方式打开本机上存在的chrome浏览器，此时打开的浏览器是纯净的浏览器什么都没有
  */
-(async ()=>{
-    await ocs.launch()
+const ocs = new ASOcs(options)
+
+ocs.launch().then(async browser=>{
+    //启动浏览器并登录
     await ocs.login.start()
+    //获取课程信息
     const course_info =await ocs.course.getCourseInfo()
     console.log(course_info);
     //进入学习界面
@@ -37,7 +36,11 @@ console.log(ocs);
     await ocs.course.gotoExam(course_info[0].url)
     //进入作业界面
     await ocs.course.gotoWork( course_info[0].url)
-})();
+    //关闭浏览器
+    browser.close()
+}).catch(e=>{
+    console.error(e);
+})
  
 
 /**
