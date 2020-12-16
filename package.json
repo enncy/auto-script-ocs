@@ -1,6 +1,6 @@
 {
   "name": "auto-script-ocs",
-  "version": "1.1.13",
+  "version": "1.1.14",
   "description": "auto-script-projects for OnlineCourceScript",
   "main": "./dist/index.js",
   "author": "klskeleton",
