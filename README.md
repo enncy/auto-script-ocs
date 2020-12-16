@@ -71,10 +71,44 @@ ocs.launch().then(async browser=>{
 
 # AutoScriptOcs
 ## class:AutoScriptOcs(options)
+<<<<<<< HEAD
+
+#### options
+=======
 
 #### options
 
 
++ `type`  <string>    ` cx | ...`        超星 ，目前只支持 	`cx`        
+    
++ `use_breakCode`  <boolean>       是否开启验证码破解 ，
+    
++ `breakCode` <Object>  此属性必须先开启 `use_breakCode : true `     ，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
+    
+  - `account`     <string>  账号
+    
+  - `password`    <string>  密码
+    
++ `school`  <string> 网课平台学校名
+    
++ `account`   <string> 网课平台账号
+    
++ `password `  <string> 网课平台密码    
+    
+ 
+
+## Property
+
+
+
++ `browser_utils` <[BrowserUtils](#BrowserUtils)>  浏览器工具类
+
++ `login` :  <[ASOcsLogin](#ASocsLogin)>  登录类 ， 使用  `login.start() ` 登录
+>>>>>>> f37d176a7f8d36d75be30a4ccbd00bb52f19d22b
+
++ `course`: <[ASOcsCourse](#ASOcsCourse)>  课程类 
+
+<<<<<<< HEAD
 + `type`  <string>    ` cx | ...`        超星 ，目前只支持 	`cx`        
   
 + `use_breakCode`  <boolean>       是否开启验证码破解 ，
@@ -109,12 +143,24 @@ ocs.launch().then(async browser=>{
 
 
 
+=======
+
+
+## Methods
+
+
+
+>>>>>>> f37d176a7f8d36d75be30a4ccbd00bb52f19d22b
 + `launch()` `return ` <[Browser](#Browser)> 默认启动方式，初始化 
 
 + `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
 
   + `options`  <Object>       
+<<<<<<< HEAD
     
+=======
+     
+>>>>>>> f37d176a7f8d36d75be30a4ccbd00bb52f19d22b
     - `binary_path` <string>  被调试的浏览器可执行文件路径 ，例如  ..../chrome.exe          
     
     - `port` <number>    调试模式指定端口                        
@@ -165,7 +211,11 @@ ocs.launch().then(async browser=>{
 `gotoExam(course_url)` `return` <Promise<boolean>>  进入考试界面
 
 + `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`         
+<<<<<<< HEAD
   
+=======
+    
+>>>>>>> f37d176a7f8d36d75be30a4ccbd00bb52f19d22b
     
 
 具体实现类：[CXCourse](#CXCourse)
