@@ -97,11 +97,11 @@ ocs.launch().then(async browser=>{
 
 
 
-- `browser_utils` <[BrowserUtils](#BrowserUtils)>  浏览器工具类
++ `browser_utils` <[BrowserUtils](#BrowserUtils)>  浏览器工具类
 
-- `login` :  <[ASOcsLogin](#ASocsLogin)>  登录类 ， 使用  `login.start() ` 登录
++ `login` :  <[ASOcsLogin](#ASocsLogin)>  登录类 ， 使用  `login.start() ` 登录
 
-- `course`: <[ASOcsCourse](#ASOcsCourse)>  课程类 
++ `course`: <[ASOcsCourse](#ASOcsCourse)>  课程类 
 
 
 
@@ -109,15 +109,15 @@ ocs.launch().then(async browser=>{
 
 
 
-- `launch()` `return ` <[Browser](#Browser)> 默认启动方式，初始化 
++ `launch()` `return ` <[Browser](#Browser)> 默认启动方式，初始化 
 
-- `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
++ `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
 
-  - `options`  <Object>       
+  + `options`  <Object>       
      
-    + `binary_path` <string>  被调试的浏览器可执行文件路径 ，例如  ..../chrome.exe          
+    - `binary_path` <string>  被调试的浏览器可执行文件路径 ，例如  ..../chrome.exe          
     
-    + `port` <number>    调试模式指定端口                        
+    - `port` <number>    调试模式指定端口                        
                
 
 
@@ -145,15 +145,15 @@ ocs.launch().then(async browser=>{
 
 `getCourseInfo()` `return` <Promise<Array<Object>>>   获取课程信息，返回一个课程数组
 
-- return <Array<Object>>
++ return <Array<Object>>
     
-  - `Object` :
+  + `Object` :
   
-    + `title` <string> 课程标题
+    - `title` <string> 课程标题
     
-    + `url` <string> 课程链接
+    - `url` <string> 课程链接
     
-    + `img` <string> 课程图片链接
+    - `img` <string> 课程图片链接
     
     + `info` <Array<string>>   课程信息，例如 ["张三","100班级","课程结束"]            
           
@@ -164,7 +164,7 @@ ocs.launch().then(async browser=>{
 
 `gotoExam(course_url)` `return` <Promise<boolean>>  进入考试界面
 
-- `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`         
++ `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`         
     
     
 
