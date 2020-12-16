@@ -9,7 +9,7 @@ auto-script-projects  for  OnlineCourseScript
 - 超星自动进入课程，作业，考试
 
 ## 使用
-```
+```shell
 // install this project
 npm i auto-script-ocs
 ```
