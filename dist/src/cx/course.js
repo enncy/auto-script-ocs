@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,8 +35,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import cfg from '../../ocs.config';
-var elements = cfg.cx.get_course.elements;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var ocs_config_1 = __importDefault(require("../ocs.config"));
+var elements = ocs_config_1.default.cx.get_course.elements;
 /**
  * CX课程类
  * @param {Puppeteer.Page} page  浏览器页面对象
@@ -144,7 +149,7 @@ var CXCourse = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        element = cfg.cx.into_course.elements;
+                        element = ocs_config_1.default.cx.into_course.elements;
                         return [4 /*yield*/, this.goto({
                                 course_url: course_url,
                                 element: element.job_a,
@@ -165,7 +170,7 @@ var CXCourse = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        element = cfg.cx.into_course.elements;
+                        element = ocs_config_1.default.cx.into_course.elements;
                         return [4 /*yield*/, this.goto({
                                 course_url: course_url,
                                 element: element.work_a,
@@ -186,7 +191,7 @@ var CXCourse = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        element = cfg.cx.into_course.elements;
+                        element = ocs_config_1.default.cx.into_course.elements;
                         return [4 /*yield*/, this.goto({
                                 course_url: course_url,
                                 element: element.exam_a,
@@ -257,4 +262,4 @@ var CXCourse = /** @class */ (function () {
     };
     return CXCourse;
 }());
-export default CXCourse;
+exports.default = CXCourse;

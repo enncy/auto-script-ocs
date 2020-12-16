@@ -1,4 +1,4 @@
-import cfg from '../../ocs.config'
+import cfg from '../ocs.config'
 import { Page } from 'puppeteer-core'
 import ASOcsCourse from '../course'
 const elements = cfg.cx.get_course.elements

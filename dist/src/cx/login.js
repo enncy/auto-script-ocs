@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,12 +35,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import cfg from '../../ocs.config.js';
-import breakCode from '../utils/break-code';
-import { EventEmitter } from 'events';
-var elements = cfg.cx.login.elements;
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var ocs_config_js_1 = __importDefault(require("../ocs.config.js"));
+var break_code_1 = __importDefault(require("../utils/break-code"));
+var events_1 = require("events");
+var elements = ocs_config_js_1.default.cx.login.elements;
 //事件对象
-var emitter = new EventEmitter();
+var emitter = new events_1.EventEmitter();
 /**
  * cx 登录类
  * @param {Page} page  浏览器页面对象
@@ -100,7 +105,7 @@ var CXLogin = /** @class */ (function () {
                     case 0:
                         page = this.page;
                         options = this.options;
-                        return [4 /*yield*/, page.goto(cfg.cx.url.login)];
+                        return [4 /*yield*/, page.goto(ocs_config_js_1.default.cx.url.login)];
                     case 1:
                         _a.sent();
                         return [4 /*yield*/, page.waitFor(elements.select_school)];
@@ -299,8 +304,8 @@ var CXLogin = /** @class */ (function () {
                         ];
                     case 6:
                         img_base64 = _a.sent();
-                        if (!(options.use_breakCode || cfg.cx.login.use_breakCode)) return [3 /*break*/, 10];
-                        return [4 /*yield*/, breakCode(img_base64, options.breakCode)];
+                        if (!(options.use_breakCode || ocs_config_js_1.default.cx.login.use_breakCode)) return [3 /*break*/, 10];
+                        return [4 /*yield*/, break_code_1.default(img_base64, options.breakCode)];
                     case 7:
                         code = _a.sent();
                         if (!vcode_input) return [3 /*break*/, 9];
@@ -309,7 +314,7 @@ var CXLogin = /** @class */ (function () {
                         _a.sent();
                         _a.label = 9;
                     case 9: return [3 /*break*/, 12];
-                    case 10: return [4 /*yield*/, page.waitFor(cfg.cx.login.write_code_time)];
+                    case 10: return [4 /*yield*/, page.waitFor(ocs_config_js_1.default.cx.login.write_code_time)];
                     case 11:
                         _a.sent();
                         _a.label = 12;
@@ -380,7 +385,7 @@ var CXLogin = /** @class */ (function () {
                                 page.once('load', function () { return __awaiter(_this, void 0, void 0, function () {
                                     return __generator(this, function (_a) {
                                         //如果主页请求已完成，说明登录成功
-                                        if (request.url().match(cfg.cx.url.index)) {
+                                        if (request.url().match(ocs_config_js_1.default.cx.url.index)) {
                                             emitter.emit('login-success', request.url());
                                         }
                                         return [2 /*return*/];
@@ -437,4 +442,4 @@ var CXLogin = /** @class */ (function () {
     };
     return CXLogin;
 }());
-export default CXLogin;
+exports.default = CXLogin;

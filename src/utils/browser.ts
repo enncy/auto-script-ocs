@@ -1,4 +1,5 @@
-const findChrome  = require( 'carlo/lib/find_chrome.js');
+import path from 'path';
+import fs from 'fs';
 import request from './request';
 import system from './system';
 import puppeteer from 'puppeteer-core';
@@ -20,13 +21,12 @@ class BrwoserUtils {
 	 getChromePath(): Promise<string> {
 
 		return new Promise((resolve, reject) => {
-			
-			//find_chrome模块来源于GoogleChromeLabs的Carlo,可以查看本机安装Chrome目录， 
-			findChrome({}).then((findChromePath: { executablePath: string}) => {
-				resolve(findChromePath.executablePath)
-			}).catch((e: any) => {
-				reject(e)
-			})
+			let chrome_path = path.join( <string>process.env.LOCALAPPDATA,"\\Google\\Chrome\\Application\\chrome.exe")  
+			if(fs.existsSync(chrome_path)){
+				resolve(chrome_path)
+			}else{
+				reject("unable to find the chrome path !")
+			}
 		})
 	}
 
@@ -72,19 +72,21 @@ class BrwoserUtils {
 
 	/**
 	 * 创建一个原生的 Puppeteer.Browser  对象 ，如果不指定浏览器路径则用本地的 chrome
-	 * @param {any} options launch 配置 
+	 * @param {any} options launch 配置  默认为 {headless:false,defaultViewport:null}
 	 * @returns {Promise<Browser>}
 	 */
-	 launch(options ?: any): Promise<Browser> {
+	 launch(options : any = {headless:false,defaultViewport:null}): Promise<Browser> {
 		return  new Promise(async (resolve, reject) => {
 			if (options && options.executablePath) {
 				resolve(await puppeteer.launch(options))
 			} else {
 				let path = await this.getChromePath()
+				console.log("running browser from "+path);
+				
 				//找不到安装路径
 				if (!path) reject("Unable to find the installation path for Chrome browser")
 				else {
-					const opt = Object.assign(options ? options : {headless:false,defaultViewport:null}, { executablePath: path })
+					const opt = Object.assign(options , { executablePath: path })
 					resolve(await puppeteer.launch(opt))
 				}
 			}

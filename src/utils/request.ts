@@ -1,5 +1,5 @@
 
-const axios = require('axios')
+import axios from 'axios';
 
 var service = axios.create({
 	timeout:60*1000

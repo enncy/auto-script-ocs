@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var axios_1 = __importDefault(require("axios"));
+const axios_1 = __importDefault(require("axios"));
 /**
  * 破解验证码 api 文档 http://api.ttshitu.com/
  * @see http://api.ttshitu.com/
@@ -13,24 +13,24 @@ var axios_1 = __importDefault(require("axios"));
  */
 function breakCode(base64, breakConfig) {
     //打码
-    return new Promise(function (resolve, reject) {
+    return new Promise((resolve, reject) => {
         //判断信息是否正确
         if (!breakConfig || !breakConfig.username || !breakConfig.password || breakConfig.username == '' || breakConfig.password == '') {
             console.error("[break-code.js] error :  breakConfig is incorrect 破解验证码信息填写不正确！！！");
             reject("[break-code.js] error :  breakConfig is incorrect 破解验证码信息填写不正确！！！");
         }
         else {
-            var apiUrl = 'http://api.ttshitu.com/base64'; //要使用点选请将地址修改为 http://api.ttshitu.com/imageXYPlus
+            const apiUrl = 'http://api.ttshitu.com/base64'; //要使用点选请将地址修改为 http://api.ttshitu.com/imageXYPlus
             axios_1.default.post(apiUrl, {
                 'username': breakConfig.username,
                 'password': breakConfig.password,
                 'typeid': '1',
                 'image': base64
             }).then(function (response) {
-                var d = response.data;
+                let d = response.data;
                 if (d.success) {
                     // handle success
-                    var _a = d.data, id = _a.id, result = _a.result;
+                    let { id, result } = d.data;
                     resolve(result);
                 }
                 else {

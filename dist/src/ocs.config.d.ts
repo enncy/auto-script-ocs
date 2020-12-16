@@ -1,89 +1,88 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+declare const _default: {
     /**	超星总配置 */
     cx: {
         /**	登录配置 */
         login: {
             /**	是否使用破解验证码登录 */
-            use_breakCode: false,
+            use_breakCode: boolean;
             /**	如果不使用验证码破解，人工输入的等待时间，write_code_time 秒后自动点击登录按钮 */
-            write_code_time: 5000,
+            write_code_time: number;
             /**	登录涉及到的元素 */
             elements: {
                 /**	ele:学校元素 */
-                select_school: '#selectSchoolA',
+                select_school: string;
                 /**	js：打开弹窗 */
-                show_school_script: "showSchool('dialog1',-1,-1)",
+                show_school_script: string;
                 /**	ele:等待学校输入框元素 */
-                search_school: '#searchSchool1',
+                search_school: string;
                 /**	js：输入学校名,搜索学校 */
-                search_school_script: "searchSchool('searchSchool1')",
+                search_school_script: string;
                 /**	time:等待搜索结果的时间 */
-                search_school_wait_time: 2000,
+                search_school_wait_time: number;
                 /**	ele:等待搜索结果列表 */
-                search_school_result: '.zw_m_bottom2 .zw_m_li a',
+                search_school_result: string;
                 /**	js：关闭选择学校框 */
-                close_school_select_script: "closeSchool('dialog2');",
+                close_school_select_script: string;
                 /**	ele:账号 */
-                account: '#unameId',
+                account: string;
                 /**	ele:密码 */
-                password: '#passwordId',
+                password: string;
                 /**	ele:验证码图像元素 */
-                vercode_img: '#numVerCode',
+                vercode_img: string;
                 /**	ele:验证码 */
-                vercode_input: '#numcode',
+                vercode_input: string;
                 /**	ele:执行js：登录 */
-                login_script: "mysubmit('form')",
+                login_script: string;
                 /**	ele:查看错误 */
-                show_error: '.show_error',
+                show_error: string;
                 /** string:表单提交后的验证码错误信息 */
-                error_code: '验证码错误',
+                error_code: string;
                 /**	time:登录等待时间 */
-                login_wait_time: 2000,
-            }
-        },
+                login_wait_time: number;
+            };
+        };
         /**	获取课程页面的配置 */
         get_course: {
             elements: {
                 /** 底部元素 */
-                foot: '.foot',
+                foot: string;
                 /**	ele:外层frame名字 */
-                iframe_name: 'frame_content',
+                iframe_name: string;
                 /** script:全部显示 */
-                all_show_script: "$('*').css('display','block')",
+                all_show_script: string;
                 /** ele:课程图片 */
-                img: '.courseItem.curFile img',
+                img: string;
                 /** ele:课程a标签 */
-                a_tag: '.courseItem.curFile h3 a',
+                a_tag: string;
                 /** ele:课程信息 */
-                info: '.courseItem.curFile div:not(.Mcon1img)'
-            }
-        },
+                info: string;
+            };
+        };
         /**	进入课程页面配置 */
         into_course: {
             elements: {
                 /** ele:作业的a标签 */
-                work_a: '.navshow li a[title="作业"]',
+                work_a: string;
                 /** ele:考试的a标签 */
-                exam_a: '.navshow li a[title="考试"]',
+                exam_a: string;
                 /**	ele:第一个学习点a标签 */
-                job_a: '.units h3 .articlename a',
+                job_a: string;
                 /** string:课程页面的  url */
-                course_study_url: '/mycourse/studentstudy',
+                course_study_url: string;
                 /** string:课程页面的  url */
-                course_work_url: '/work/getAllWork',
+                course_work_url: string;
                 /** string:课程页面的  url */
-                course_exam_url: '/exam/test',
-            }
-        },
+                course_exam_url: string;
+            };
+        };
         /**	基本路径配置 */
         url: {
             /**	登录页 */
-            login: 'https://passport2.chaoxing.com/login',
-            login_request: 'https://passport2.chaoxing.com/login',
+            login: string;
+            login_request: string;
             /**	主页 */
-            index: 'http://i.mooc.chaoxing.com/space/index'
-        }
-    }
+            index: string;
+        };
+    };
 };
+export default _default;

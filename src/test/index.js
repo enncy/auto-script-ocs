@@ -1,5 +1,5 @@
 
-import ASOcs from '../dist/'
+import ASOcs from '../index'
 
 let options = {
 
@@ -13,32 +13,32 @@ let options = {
         password: '...',
     },
     //学校名称
-    school: "北京大学",
+    school: "广西大学行健文理学院",
     //账号名称
-    account: '123456',
+    account: '18275719980',
     //密码
-    password: '123456'
+    password: 'skeleton132525'
 }
 
 const ocs = new ASOcs(options)
+console.log(ocs);
 
 /**
  * 使用默认方式打开本机上存在的chrome浏览器，此时打开的浏览器是纯净的浏览器什么都没有
  */
-ocs.launch({}).then(async browser => {
-    //开始刷课
-    ocs.login.start()
+(async ()=>{
+    await ocs.launch()
+    await ocs.login.start()
     const course_info =await ocs.course.getCourseInfo()
+    console.log(course_info);
     //进入学习界面
     await ocs.course.gotoStudy( course_info[0].url)
     //进入考试界面
     await ocs.course.gotoExam(course_info[0].url)
     //进入作业界面
     await ocs.course.gotoWork( course_info[0].url)
-}).catch(e => {
-    console.error(e);
-})
-
+})();
+ 
 
 /**
  *  使用调试模式浏览器，此方法可以打开原来自带用户数据的浏览器，例如导航栏，历史记录，拓展程序，但是只能打开一次，多次打开将使用第一个进行操作

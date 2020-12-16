@@ -1,10 +1,12 @@
 
 
-import cfg from '../../ocs.config.js'
+
+
+import cfg from '../ocs.config.js'
 import ASOcsLogin from '../login'
 import breakCode from '../utils/break-code'
-import {EventEmitter} from 'events'
-import { JSHandle, ElementHandle,Page } from 'puppeteer-core'
+import { EventEmitter } from 'events'
+import { JSHandle, ElementHandle, Page } from 'puppeteer-core'
 const elements = cfg.cx.login.elements
 //事件对象
 const emitter = new EventEmitter();
@@ -19,15 +21,16 @@ class CXLogin implements ASOcsLogin {
     page: Page
     options: any
 
-    constructor(page: Page  , options: any){
+    constructor(page: Page, options: any) {
         this.page = page
         this.options = options
     }
 
     /**
      * 开始课程
+     * @returns {Promise<string>}
      */
-    async start() {
+    async start(): Promise<string> {
         return new Promise(async (resolve, reject) => {
 
             emitter.on('login-success', url => {
@@ -48,32 +51,41 @@ class CXLogin implements ASOcsLogin {
 
     /**
      * 选择学校
+     * @returns {Promise<boolean>}
      */
-    async  selectSchool() {
-        let page = this.page
-        let options = this.options
-        await page.goto(cfg.cx.url.login)
-        await page.waitFor(elements.select_school)
-        await page.evaluate(elements.show_school_script)
-        await page.waitFor(elements.search_school)
-        //输入学校名
-        let search_school_ele = await page.$(elements.search_school)  
-        if(search_school_ele)await search_school_ele.type(options.school)
-        //搜索学校名
-        await page.evaluate(elements.search_school_script)
-        //等待搜索结果
-        await page.waitFor(elements.search_school_wait_time)
-        await page.waitFor(elements.search_school_result)
-
-        //点击搜索结果相匹配的列表，并且点击
-        const search_school_result_ele = await page.$$(elements.search_school_result)
-        search_school_result_ele.forEach(async ele => {
-            const text = await page.evaluate(ele => ele.outerText, ele)
-            //寻找匹配的学校，并点击
-            if (text === options.school) {
-                await ele.click()
+    async  selectSchool(): Promise<boolean> {
+        return new Promise(async (resolve, reject) => {
+            try{
+                let page = this.page
+                let options = this.options
+                await page.goto(cfg.cx.url.login)
+                await page.waitFor(elements.select_school)
+                await page.evaluate(elements.show_school_script)
+                await page.waitFor(elements.search_school)
+                //输入学校名
+                let search_school_ele = await page.$(elements.search_school)
+                if (search_school_ele) await search_school_ele.type(options.school)
+                //搜索学校名
+                await page.evaluate(elements.search_school_script)
+                //等待搜索结果
+                await page.waitFor(elements.search_school_wait_time)
+                await page.waitFor(elements.search_school_result)
+    
+                //点击搜索结果相匹配的列表，并且点击
+                const search_school_result_ele = await page.$$(elements.search_school_result)
+                search_school_result_ele.forEach(async ele => {
+                    const text = await page.evaluate(ele => ele.outerText, ele)
+                    //寻找匹配的学校，并点击
+                    if (text === options.school) {
+                        await ele.click()
+                        resolve(true)
+                    }
+                })
+            }catch(e){
+                reject(false)
             }
         })
+
     }
 
     /**
@@ -89,7 +101,7 @@ class CXLogin implements ASOcsLogin {
         //清空
         await page.evaluate(ele => ele.value = '', account)
         await page.waitFor(100)
-        if(account)await account.type(options.account)
+        if (account) await account.type(options.account)
     }
     /**
      * 输入密码
@@ -104,7 +116,7 @@ class CXLogin implements ASOcsLogin {
         //清空
         await page.evaluate(ele => ele.value = '', password)
         await page.waitFor(100)
-        if(password)await password.type(options.password)
+        if (password) await password.type(options.password)
     }
 
     /**
@@ -117,7 +129,7 @@ class CXLogin implements ASOcsLogin {
         let options = this.options
         //清空
         await page.waitFor(elements.vercode_input)
-        const vcode_input=await page.$(elements.vercode_input)
+        const vcode_input = await page.$(elements.vercode_input)
         await page.evaluate(ele => ele.value = '', vcode_input)
         //验证码填写
         await page.waitFor(elements.vercode_img)
@@ -125,12 +137,12 @@ class CXLogin implements ASOcsLogin {
         const img_base64 = await page.evaluate(ele => {
             return getBase64Image(ele)
             //获取图片base64编码
-            function getBase64Image(img:any) {
+            function getBase64Image(img: any) {
                 var canvas = document.createElement("canvas");
-                canvas.width =  img.width;
+                canvas.width = img.width;
                 canvas.height = img.height;
                 var ctx = canvas.getContext("2d");
-                if(ctx)ctx.drawImage(img, 0, 0, img.width, img.height);
+                if (ctx) ctx.drawImage(img, 0, 0, img.width, img.height);
                 var dataURL = canvas.toDataURL("image/png");
                 //不需要data:image/png;base64这部分
                 return dataURL.replace("data:image/png;base64,", "");
@@ -140,7 +152,7 @@ class CXLogin implements ASOcsLogin {
         //如果设置了破解验证码, 可通过 options.use_breakCode 或者 cfg.cx.login.use_breakCode 设置
         if (options.use_breakCode || cfg.cx.login.use_breakCode) {
             const code = await breakCode(img_base64, options.breakCode)
-            if(vcode_input)await vcode_input.type(code)
+            if (vcode_input) await vcode_input.type(code)
         }
         //否则等待时间
         else {

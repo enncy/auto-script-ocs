@@ -1,5 +1,5 @@
 
-const axios = require('axios')
+import axios from 'axios';
 
  /**
   * 破解验证码 api 文档 http://api.ttshitu.com/

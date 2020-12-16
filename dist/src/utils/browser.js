@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,10 +35,15 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var findChrome = require('carlo/lib/find_chrome.js');
-import request from './request';
-import system from './system';
-import puppeteer from 'puppeteer-core';
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var path_1 = __importDefault(require("path"));
+var fs_1 = __importDefault(require("fs"));
+var request_1 = __importDefault(require("./request"));
+var system_1 = __importDefault(require("./system"));
+var puppeteer_core_1 = __importDefault(require("puppeteer-core"));
 var BrwoserUtils = /** @class */ (function () {
     function BrwoserUtils() {
         this.default_debug_port = 9222;
@@ -50,12 +56,13 @@ var BrwoserUtils = /** @class */ (function () {
      */
     BrwoserUtils.prototype.getChromePath = function () {
         return new Promise(function (resolve, reject) {
-            //find_chrome模块来源于GoogleChromeLabs的Carlo,可以查看本机安装Chrome目录， 
-            findChrome({}).then(function (findChromePath) {
-                resolve(findChromePath.executablePath);
-            }).catch(function (e) {
-                reject(e);
-            });
+            var chrome_path = path_1.default.join(process.env.LOCALAPPDATA, "\\Google\\Chrome\\Application\\chrome.exe");
+            if (fs_1.default.existsSync(chrome_path)) {
+                resolve(chrome_path);
+            }
+            else {
+                reject("unable to find the chrome path !");
+            }
         });
     };
     /**
@@ -81,7 +88,7 @@ var BrwoserUtils = /** @class */ (function () {
                         _b.trys.push([0, 9, , 10]);
                         //获取可用的端口号
                         _a = this;
-                        return [4 /*yield*/, system.portIsOccupied((options && options.port) || this.default_debug_port)];
+                        return [4 /*yield*/, system_1.default.portIsOccupied((options && options.port) || this.default_debug_port)];
                     case 1:
                         //获取可用的端口号
                         _a.default_debug_port = _b.sent();
@@ -90,11 +97,11 @@ var BrwoserUtils = /** @class */ (function () {
                         return [4 /*yield*/, this.getChromePath()];
                     case 2:
                         chrome_path = _b.sent();
-                        return [4 /*yield*/, system.exec(chrome_path + debug_options)];
+                        return [4 /*yield*/, system_1.default.exec(chrome_path + debug_options)];
                     case 3:
                         _b.sent();
                         return [3 /*break*/, 6];
-                    case 4: return [4 /*yield*/, system.exec(options.binary_path + debug_options)];
+                    case 4: return [4 /*yield*/, system_1.default.exec(options.binary_path + debug_options)];
                     case 5:
                         _b.sent();
                         _b.label = 6;
@@ -123,13 +130,13 @@ var BrwoserUtils = /** @class */ (function () {
     BrwoserUtils.prototype.launch = function (options) {
         var _this = this;
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
-            var _a, path, opt, _b;
+            var _a, path_2, opt, _b;
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
                         if (!(options && options.executablePath)) return [3 /*break*/, 2];
                         _a = resolve;
-                        return [4 /*yield*/, puppeteer.launch(options)];
+                        return [4 /*yield*/, puppeteer_core_1.default.launch(options)];
                     case 1:
                         _a.apply(void 0, [_c.sent()]);
                         return [3 /*break*/, 6];
@@ -137,14 +144,14 @@ var BrwoserUtils = /** @class */ (function () {
                         //找不到安装路径
                     ];
                     case 3:
-                        path = _c.sent();
-                        if (!!path) return [3 /*break*/, 4];
+                        path_2 = _c.sent();
+                        if (!!path_2) return [3 /*break*/, 4];
                         reject("Unable to find the installation path for Chrome browser");
                         return [3 /*break*/, 6];
                     case 4:
-                        opt = Object.assign(options ? options : { headless: false, defaultViewport: null }, { executablePath: path });
+                        opt = Object.assign(options ? options : { headless: false, defaultViewport: null }, { executablePath: path_2 });
                         _b = resolve;
-                        return [4 /*yield*/, puppeteer.launch(opt)];
+                        return [4 /*yield*/, puppeteer_core_1.default.launch(opt)];
                     case 5:
                         _b.apply(void 0, [_c.sent()]);
                         _c.label = 6;
@@ -167,7 +174,7 @@ var BrwoserUtils = /** @class */ (function () {
                 switch (_a.label) {
                     case 0:
                         _a.trys.push([0, 2, , 3]);
-                        return [4 /*yield*/, puppeteer.connect({
+                        return [4 /*yield*/, puppeteer_core_1.default.connect({
                                 browserWSEndpoint: wsEndpointURL,
                                 defaultViewport: null,
                             })];
@@ -200,7 +207,7 @@ var BrwoserUtils = /** @class */ (function () {
         var _this = this;
         return new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                request.get('http://localhost:' + port + '/json/version').then(function (r) {
+                request_1.default.get('http://localhost:' + port + '/json/version').then(function (r) {
                     resolve(r.data.webSocketDebuggerUrl);
                 }).catch(function (e) {
                     reject(e);
@@ -253,4 +260,4 @@ var BrwoserUtils = /** @class */ (function () {
     };
     return BrwoserUtils;
 }());
-export default BrwoserUtils;
+exports.default = BrwoserUtils;
