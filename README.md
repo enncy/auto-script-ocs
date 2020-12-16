@@ -81,6 +81,8 @@ ocs.launch().then(async browser=>{
   - `school`  <string> 网课平台学校名
   - `account`   <string> 网课平台账号
   - `password `  <string> 网课平台密码
+- `options` <Object>
+ 
 ****
 
 ## Property
