@@ -74,23 +74,22 @@ ocs.launch().then(async browser=>{
 
 #### options
 
-+ `course`: <[ASOcsCourse](#ASOcsCourse)>  课程类 
 
-+ `type`  <[string](string)>    ` cx | ...`        超星 ，目前只支持 	`cx`        
++ `type`  <[string](#string)>    ` cx | ...`        超星 ，目前只支持 	`cx`        
   
-+ `use_breakCode`  <[boolean](boolean)>       是否开启验证码破解 ，
++ `use_breakCode`  <[boolean](#boolean)>       是否开启验证码破解 ，
   
-+ `breakCode` <[Object](Object)>  此属性必须先开启 `use_breakCode : true `     ，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
++ `breakCode` <[Object](#Object)>  此属性必须先开启 `use_breakCode : true `     ，请到 http://www.ttshitu.com/docs/ 打码平台配置你的 account账号和 password密码
   
-  - `account`     <[string](string)>  账号
+  - `account`     <[string](#string)>  账号
     
-  - `password`    <[string](string)>  密码
+  - `password`    <[string](#string)>  密码
   
-+ `school`  <[string](string)> 网课平台学校名
++ `school`  <[string](#string)> 网课平台学校名
   
-+ `account`   <[string](string)> 网课平台账号
++ `account`   <[string](#string)> 网课平台账号
   
-+ `password `  <[string](string)> 网课平台密码    
++ `password `  <[string](#string)> 网课平台密码    
     
 
 ## Property
@@ -112,11 +111,11 @@ ocs.launch().then(async browser=>{
 
 + `launchByDebug(options)` `return ` <[Browser](#Browser)>   调试模式启动，具体见 see *https://chromedevtools.github.io/devtools-protocol/*
 
-  + `options`  <[Object](Object)>       
+  + `options`  <[Object](#Object)>       
     
-    - `binary_path` <[string](string)>  被调试的浏览器可执行文件路径 ，例如  ..../chrome.exe          
+    - `binary_path` <[string](#string)>  被调试的浏览器可执行文件路径 ，例如  ..../chrome.exe          
     
-    - `port` <[number]()>    调试模式指定端口                        
+    - `port` <[number](#number)>    调试模式指定端口                        
                
 
 
@@ -139,28 +138,28 @@ ocs.launch().then(async browser=>{
 
 
 
-`getCourseInfo()` `return` <Promise<Array<Object>>>   获取课程信息，返回一个课程数组
++ `getCourseInfo()` `return` <Promise<Array<Object>>>   获取课程信息，返回一个课程数组
 
-+ return < [Array](Array)< [Object](Object) > >
+  + return < [Array](#Array)< [Object](#Object) > >
   
-  + `Object` <[Object](Object)>
+    + `Object` <[Object](#Object)>
   
-    - `title` <[string](string)> 课程标题
-    
-    - `url` <[string](string)> 课程链接
-    
-    - `img` <[string](string)> 课程图片链接
-    
-    - `info` < [Array](Array)< [string](string)> >   课程信息，例如 ["张三","100班级","课程结束"]            
+      - `title` <[string](#string)> 课程标题
+
+      - `url` <[string](#string)> 课程链接
+
+      - `img` <[string](#string)> 课程图片链接
+
+      - `info` < [Array](#Array)< [string](#string)> >   课程信息，例如 ["张三","100班级","课程结束"]            
           
 
-- `gotoStudy(course_url)` `return` < [Promise](Promise)< [boolean](boolean)>>  进入学习界面
++ `gotoStudy(course_url)` `return` < [Promise](#Promise)< [boolean](#boolean)>>  进入学习界面
 
-- `gotoWork(course_url)` `return` <[Promise](Promise)< [boolean](boolean)>>  进入作业界面
++ `gotoWork(course_url)` `return` <[Promise](#Promise)< [boolean](#boolean)>>  进入作业界面
 
-- `gotoExam(course_url)` `return` <[Promise](Promise)< [boolean](boolean)>>  进入考试界面
++ `gotoExam(course_url)` `return` <[Promise](Promise)< [boolean](boolean)>>  进入考试界面
 
-+ `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`         
+  - `course_url`  <[string](#string)>  课程链接 ， 例如  `getCourseInfo()[0].url`         
   
     
 
