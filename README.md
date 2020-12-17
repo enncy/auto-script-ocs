@@ -19,7 +19,7 @@ npm i auto-script-ocs
 
 ```javascript
 
-import ASOcs from 'auto-script-ocs'
+const ASOcs = require('auto-script-ocs')
 
 let options = {
     //启动类型，目前有 : cx
