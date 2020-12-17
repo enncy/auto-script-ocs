@@ -154,11 +154,11 @@ ocs.launch().then(async browser=>{
     - `info` < [Array](Array)< [string](string)> >   课程信息，例如 ["张三","100班级","课程结束"]            
           
 
-`gotoStudy(course_url)` `return` < [Promise](Promise)< [boolean](boolean)>>  进入学习界面
+- `gotoStudy(course_url)` `return` < [Promise](Promise)< [boolean](boolean)>>  进入学习界面
 
-`gotoWork(course_url)` `return` <[Promise](Promise)< [boolean](boolean)>>  进入作业界面
+- `gotoWork(course_url)` `return` <[Promise](Promise)< [boolean](boolean)>>  进入作业界面
 
-`gotoExam(course_url)` `return` <[Promise](Promise)< [boolean](boolean)>>  进入考试界面
+- `gotoExam(course_url)` `return` <[Promise](Promise)< [boolean](boolean)>>  进入考试界面
 
 + `course_url`  <string>  课程链接 ， 例如  `getCourseInfo()[0].url`         
   
