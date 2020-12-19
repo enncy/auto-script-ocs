@@ -10,7 +10,7 @@ auto-script-projects  for  OnlineCourseScript
 
 ## 使用
 ```shell
-// install this project
+// install this project 安装此项目
 npm i auto-script-ocs
 ```
 
