@@ -6,7 +6,7 @@
   "author": "klskeleton",
   "license": "ISC",
   "scripts": {
-    "test": "node test/index.js",
+    "test": "node ./dist/test/index.js",
     "dev": "tsc && node ./dist/test/index.js",
     "pub": "tsc && git push origin main && nrm use npm && npm version patch && npm publish && nrm use taobao"
   },

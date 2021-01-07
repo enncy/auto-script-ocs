@@ -22,7 +22,7 @@ let options = {
  * 使用默认方式打开本机上存在的chrome浏览器，此时打开的浏览器是纯净的浏览器什么都没有
  */
 const ocs = new ASOcs(options)
-
+console.log("ocs:",ocs);
 ocs.launch().then(async browser=>{
     //启动浏览器并登录
     await ocs.login.start()

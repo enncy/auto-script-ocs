@@ -34,6 +34,7 @@ let options = {
  * 使用默认方式打开本机上存在的chrome浏览器，此时打开的浏览器是纯净的浏览器什么都没有
  */
 const ocs = new index_1.default(options);
+console.log("ocs:", ocs);
 ocs.launch().then((browser) => __awaiter(void 0, void 0, void 0, function* () {
     //启动浏览器并登录
     yield ocs.login.start();
